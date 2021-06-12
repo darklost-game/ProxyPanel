@@ -1,10 +1,10 @@
-###### 安装php依赖模块
+#### 安装php依赖模块
 
 - fileinfo
 - redis
 
 
-###### php 禁用函数删除
+#### php 禁用函数删除
 
 - putenv
 - pcntl_alarm
