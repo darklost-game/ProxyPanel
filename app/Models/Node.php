@@ -109,10 +109,18 @@ class Node extends Model
         $ip = $this->ips();
         if ($ip !== []) {
             $data = IP::IPSB($ip[0]);
-
+          
             if ($data) {
                 self::withoutEvents(function () use ($data) {
-                    $this->update(['geo' => $data['latitude'].','.$data['longitude']]);
+                    $latitude = "未知";
+                    if (array_key_exists("latitude", $data)) {
+                        $latitude =  $data['latitude'];
+                    }
+                    $longtitude = "未知";
+                    if (array_key_exists("longitude", $data)) {
+                        $longitude =  $data['longitude'];
+                    }
+                    $this->update(['geo' => $latitude.','.$longtitude]);
                 });
 
                 return true;
