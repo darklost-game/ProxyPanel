@@ -64,7 +64,7 @@ cp .env.example .env
 
 DB_HOST=127.0.0.1 数据库服务器IP/域名
 DB_PORT=3306 数据库端口 默认为3306
-DB_DATABASE=ProxyPanel 数据库名
+DB_DATABASE=proxypanel 数据库名
 DB_USERNAME=root 用户名
 DB_PASSWORD=root 密码
 
@@ -149,5 +149,15 @@ MAILGUN_SECRET=
 
 ```
 php artisan migrate
+
+```
+
+
+#### 默认账号密码
+
+```
+
+默认管理员账号为： test@test.com
+密码为：123456
 
 ```
