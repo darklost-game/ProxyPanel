@@ -246,10 +246,6 @@
                                             <input type="text" class="form-control col-md-4" name="v2_alter_id" value="16" id="v2_alter_id" required/>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="v2ray_port" class="col-md-3 col-form-label">连接端口</label>
-                                            <input type="number" class="form-control col-md-4" name="port" id="v2ray_port" value="443"/>
-                                        </div>
-                                        <div class="form-group row">
                                             <label for="v2_port" class="col-md-3 col-form-label">服务端口</label>
                                             <input type="number" class="form-control col-md-4" name="v2_port" id="v2_port" value="10053" required/>
                                         </div>
@@ -312,6 +308,10 @@
                                         <div class="form-group row">
                                             <label for="v2_path" class="col-md-3 col-form-label">路径 | 密钥</label>
                                             <input type="text" class="form-control col-md-4" name="v2_path" id="v2_path">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="v2_sni" class="col-md-3 col-form-label">SNI</label>
+                                            <input type="text" class="form-control col-md-4" name="v2_sni" id="v2_sni">
                                         </div>
                                         <div class="form-group row">
                                             <label for="v2_tls" class="col-md-3 col-form-label">连接TLS</label>
@@ -470,6 +470,7 @@
             $('#v2_net').selectpicker('val', '{{$node->v2_net}}');
             $('#v2_type').selectpicker('val', '{{$node->v2_type}}');
             $('#v2_host').val('{{$node->v2_host}}');
+            $('#v2_sni').val('{{$node->v2_sni}}');
             v2_path.val('{{$node->v2_path}}');
             @if($node->v2_tls)
             $('#v2_tls').click();
@@ -497,11 +498,9 @@
         // ajax同步提交
         function Submit() {
             const type = $('input[name=\'type\']:checked').val();
-            let port;
+            let port = null;
             switch (type) {
-                case '2':
-                    port = $('#v2ray_port').val();
-                    break;
+                case '2': break;
                 case '3':
                     port = $('#trojan_port').val();
                     break;
@@ -552,6 +551,7 @@
                     v2_type: $('#v2_type').val(),
                     v2_host: $('#v2_host').val(),
                     v2_path: $('#v2_path').val(),
+                    v2_sni: $('#v2_sni').val(),
                     v2_tls: document.getElementById('v2_tls').checked ? 1 : 0,
                     tls_provider: $('#tls_provider').val(),
                     is_relay: document.getElementById('is_relay').checked ? 1 : 0,

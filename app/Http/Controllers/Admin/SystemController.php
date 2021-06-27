@@ -140,6 +140,7 @@ class SystemController extends Controller
             $telegramService->getMe();
             $telegramService->setWebhook(rtrim(sysConfig('website_url'), '/').'/api/telegram/webhook?access_token='.md5($value));
         }
+
         // 更新配置
         if (Config::findOrFail($name)->update(['value' => $value])) {
             return Response::json(['status' => 'success', 'message' => trans('common.update_action', ['action' => trans('common.success')])]);

@@ -11,6 +11,8 @@ if (env('APP_KEY') && config('settings')) {
 Route::get('callback/checkout', 'Gateway\PayPal@getCheckout')->name('paypal.checkout'); // 支付回调相关
 // Telegram fallback
 Route::post('api/telegram/webhook', 'TelegramController@webhook');
+Route::post('api/telegram/webhook', 'TelegramController@webhook'); // Telegram fallback
+
 // 登录相关
 Route::middleware(['isForbidden', 'affiliate', 'isMaintenance'])->group(function () {
     Route::get('lang/{locale}', 'AuthController@switchLang')->name('lang'); // 语言切换
